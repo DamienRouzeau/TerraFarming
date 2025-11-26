@@ -109,3 +109,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847ee008a70376944b991be52e514cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commandName: GoTo

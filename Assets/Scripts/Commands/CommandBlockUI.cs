@@ -6,6 +6,7 @@ public class CommandBlockUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     private Transform originalParent;
     private int originalIndex;
     private CanvasGroup canvasGroup;
+    public Commands commandName;
 
     private void Awake()
     {
