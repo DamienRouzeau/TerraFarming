@@ -9,7 +9,7 @@ public class CommandDispatcher : MonoBehaviour
     public static CommandDispatcher instance => Instance;
 
     [SerializeField] private GameObject commandContainer;
-    private List<Commands> commandsList = new List<Commands>();
+    private List<CommandBlockUI> commandsList = new List<CommandBlockUI>();
     private List<HumanBehaviour> humans = new List<HumanBehaviour>();
 
     [Header("InterestsPoints")]
@@ -37,9 +37,16 @@ public class CommandDispatcher : MonoBehaviour
             human.ResetIndex();
             return Commands.WaitingForInstruction;
         }
-        if (human.GetIndex() > commandsList.Count -1)
+        if (human.GetIndex() > commandsList.Count -1) // Fin de la boucle, retour à la première tache
             human.ResetIndex();
-        return commandsList[human.GetIndex()];
+
+        foreach(CommandBlockUI _command in commandsList)
+        {
+            _command.SetActiveCurrentTask(false);
+        }
+        commandsList[human.GetIndex()].SetActiveCurrentTask(true);
+
+        return commandsList[human.GetIndex()].commandName;
     }
 
     public void GetAllCommands()
@@ -54,7 +61,7 @@ public class CommandDispatcher : MonoBehaviour
         CommandBlockUI[] _commands = commandContainer.GetComponentsInChildren<CommandBlockUI>();
         foreach (CommandBlockUI _command in _commands)
         {
-            commandsList.Add(_command.commandName);
+            commandsList.Add(_command);
         }
         foreach(HumanBehaviour _human in humans)
         {

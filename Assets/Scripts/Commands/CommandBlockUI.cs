@@ -7,11 +7,13 @@ public class CommandBlockUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     private int originalIndex;
     private CanvasGroup canvasGroup;
     public Commands commandName;
+    [SerializeField] GameObject currentHighlight;
 
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null) canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        currentHighlight.SetActive(false);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -45,5 +47,10 @@ public class CommandBlockUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
         transform.SetSiblingIndex(newIndex);
         CommandDispatcher.instance.GetAllCommands();
+    }
+
+    public void SetActiveCurrentTask(bool active)
+    {
+        currentHighlight.SetActive(active);
     }
 }
