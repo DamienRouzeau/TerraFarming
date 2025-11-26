@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3735698668819457021}
   - component: {fileID: 788220440983414847}
   m_Layer: 5
-  m_Name: GoTo
+  m_Name: GoToCave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.44705886, g: 0.47450984, b: 0.48627454, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -109,4 +109,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847ee008a70376944b991be52e514cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commandName: GoTo
+  commandName: 4

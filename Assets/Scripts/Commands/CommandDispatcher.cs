@@ -7,12 +7,17 @@ public class CommandDispatcher : MonoBehaviour
 {
     private static CommandDispatcher Instance { get; set; }
     public static CommandDispatcher instance => Instance;
+
     [SerializeField] private GameObject commandContainer;
     private List<Commands> commandsList = new List<Commands>();
+    private List<HumanBehaviour> humans = new List<HumanBehaviour>();
 
     [Header("InterestsPoints")]
     public Transform forest;
     public Transform home;
+    public Transform cave;
+
+
 
     private void Awake()
     {
@@ -22,6 +27,11 @@ public class CommandDispatcher : MonoBehaviour
 
     public Commands GetNewCommand(HumanBehaviour human)
     {
+        if(!humans.Contains(human))
+        {
+            humans.Add(human); // Si l'humain n'est pas encore enregistré, l'ajouter à la liste
+        }
+
         if(commandsList.Count == 0)
         {
             human.ResetIndex();
@@ -46,13 +56,26 @@ public class CommandDispatcher : MonoBehaviour
         {
             commandsList.Add(_command.commandName);
         }
+        foreach(HumanBehaviour _human in humans)
+        {
+            _human.ResetIndex();
+        }
     }
 }
 
 public enum Commands
 {
-    GoTo,
+    GoToForest,
     Get,
     GoHome,
-    WaitingForInstruction
+    WaitingForInstruction,
+    GoToCave
+};
+
+public enum Location
+{
+    Forest,
+    Home,
+    Nowhere,
+    Cave
 };

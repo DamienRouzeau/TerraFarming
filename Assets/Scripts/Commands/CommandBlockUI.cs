@@ -44,5 +44,6 @@ public class CommandBlockUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         }
 
         transform.SetSiblingIndex(newIndex);
+        CommandDispatcher.instance.GetAllCommands();
     }
 }
