@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5521617f47ab1048bce166b94b056b8, type: 3}
+  m_Name: WalkSpeed
+  m_EditorClassIdentifier: 
+  name: WalkSpeed
+  levels:
+  - cost: 5
+    resource: 0
+    description: a
+  - cost: 10
+    resource: 0
+    description: bbb
+  - cost: 20
+    resource: 0
+    description: ccccccc
+  - cost: 50
+    resource: 0
+    description: ed rfg reg sdgfs d
+  level: 3

@@ -10,12 +10,7 @@ public class ResourcesManager : MonoBehaviour
 
 
     [Header("Resources Quantity")]
-    private int woodQTT;
-    private int stoneQTT;
-
-    [Header("UI")]
-    [SerializeField] private TextMeshProUGUI woodTXT;
-    [SerializeField] private TextMeshProUGUI stoneTXT;
+    public ResourceQTT[] resourceQTT;
 
     private void Awake()
     {
@@ -25,26 +20,31 @@ public class ResourcesManager : MonoBehaviour
 
     private void Start()
     {
-        woodTXT.text = FormatNumber(woodQTT);
-        stoneTXT.text = FormatNumber(stoneQTT);
+        foreach(ResourceQTT res in resourceQTT)
+        {
+            res.txt.text = FormatNumber(res.qtt);
+        }
     }
 
     public void AddResource(ResourcesType _resource, int _qtt)
     {
-        switch (_resource)
+
+        int i = resourceQTT.Length - 1;
+        while(i>=0)
         {
-            case ResourcesType.Wood:
-                woodQTT += _qtt;
-                woodTXT.text = FormatNumber(woodQTT);
-                break;
-            case ResourcesType.Stone:
-                stoneQTT += _qtt;
-                stoneTXT.text = FormatNumber(stoneQTT);
-                break;
-            default:
-                Debug.Log("Resource uncknown : " + _resource);
-                break;
+            if(resourceQTT[i].resource == _resource)
+            {
+                resourceQTT[i].qtt += _qtt;
+                resourceQTT[i].txt.text = FormatNumber(resourceQTT[i].qtt);
+                i = -1;
+            }
+            i--;
         }
+    }
+
+    public void RemoveResource(ResourcesType _resource, int _qtt)
+    {
+        AddResource(_resource, -_qtt);
     }
 
 
@@ -60,9 +60,30 @@ public class ResourcesManager : MonoBehaviour
         return value.ToString(value >= 100 ? "0" : "0.##") + suffixes[i];
     }
 
+    public int GetQuantity(ResourcesType _resource)
+    {
+        int i = resourceQTT.Length - 1;
+        while (i >= 0)
+        {
+            if (resourceQTT[i].resource == _resource)
+            {
+                return resourceQTT[i].qtt;
+            }
+            i--;
+        }
+        Debug.Log("Resource not found, return 0 quantity");
+        return 0;
+    }
 
 
+}
 
+[System.Serializable]
+public class ResourceQTT
+{
+    public int qtt;
+    public ResourcesType resource;
+    public TextMeshProUGUI txt;
 }
 
 public enum ResourcesType
